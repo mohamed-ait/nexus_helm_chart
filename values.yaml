@@ -24,4 +24,9 @@ Deployment:
         name: nexus-vol
 # service attributs :
 service: 
+  name: nexus-java
+  ports:
+    port: 8081
+    nodePort: 32321
+  type: NodePort
   
