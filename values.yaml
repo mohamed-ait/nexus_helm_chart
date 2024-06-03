@@ -42,9 +42,9 @@ service:
   type: NodePort
 
   # Persistent Volume Claim attributs :
-  pvc:
-    name: nexus-java-pvc
-    storageClassName: nfs-client
-    resources: 
-      requests:
-        storage: 5Gi
+pvc:
+  name: nexus-java-pvc
+  storageClassName: nfs-client
+  resources: 
+    requests:
+      storage: 5Gi

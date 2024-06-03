@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nexus-js-pvc
-  namespace: devops-tools
+  name: {{ .Values.pvc.name }}
+  namespace: {{ .Values.namespace }}
 spec:
-  storageClassName: nfs-client
+  storageClassName: {{ .Values.pvc.storageClassName }}
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: {{ .Values.pvc.resources.requests.storage }}
