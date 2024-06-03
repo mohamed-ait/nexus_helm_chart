@@ -1,3 +1,14 @@
+# nfs chart attributs :
+nfs-subdir-external-provisioner:
+  storageClass:
+    name: nfs-client
+    reclaimPolicy: Delete
+    allowVolumeExpansion: true
+    defaultClass: true
+
+  nfs:
+    server: nfs-server-ip
+    path: /data/nfs
 # namespace : 
 namespace: devops-tools
 # deployment attributs : 
