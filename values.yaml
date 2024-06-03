@@ -21,18 +21,18 @@ Deployment:
     name: nexus-vol
     persistentVolumeClaim:
       claimName: nexus-java-pvc
-    container: 
-      name: nexus-java
-      image: nexus/nexus3:latest
-      resources:
-        limits:
-          memory: "4Gi"
-          cpu: "1000m"
-        requests: 
-          memory: "2Gi"
-          cpu: "500m"
-      volumeMounts: 
-        name: nexus-vol
+  container: 
+    name: nexus-java
+    image: nexus/nexus3:latest
+    resources:
+      limits:
+        memory: "4Gi"
+        cpu: "1000m"
+      requests: 
+        memory: "2Gi"
+        cpu: "500m"
+    volumeMounts: 
+      name: nexus-vol
 # service attributs :
 service: 
   name: nexus-java

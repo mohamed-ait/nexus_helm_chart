@@ -1,34 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nexus-server-java
-  namespace: devops-tools
+  name: {{ .Values.Deployment.name }}
+  namespace: {{ .Values.namespace }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.Deployment.replicas }}
   selector:
     matchLabels:
-      app: nexus-server-java
+      app: {{ .Values.Deployment.labels.name }}
   template:
     metadata:
       labels:
-        app: nexus-server-java
+        app: {{ .Values.Deployment.labels.name }}
     spec:
       volumes:
-        - name: nexus-vol
+        - name: {{ .Values.Deployment.volumes.name }}
           persistentVolumeClaim:
-            claimName: nexus-java-pvc
+            claimName: {{ .Values.Deployment.volumes.persistentVolumeClaim.claimName }}
       containers:
-        - name: nexus
-          image: sonatype/nexus3:latest
+        - name: {{ .Values.Deployment.container.name }}
+          image: {{ .Values.Deployment.container.image }}
           resources:
             limits:
-              memory: "4Gi"
-              cpu: "1000m"
+              memory: {{ .Values.Deployment.container.resources.limits.memory }}
+              cpu: {{ .Values.Deployment.container.resources.limits.cpu }}
             requests:
-              memory: "2Gi"
-              cpu: "500m"
+              memory: {{ .Values.Deployment.container.resources.requests.memory }}
+              cpu: {{ .Values.Deployment.container.resources.requests.memory }}
           ports:  
             - containerPort: 8081
           volumeMounts:
-            - name: nexus-vol
+            - name: {{ .Values.Deployment.container.volumeMounts.name }}
               mountPath: /nexus-data
