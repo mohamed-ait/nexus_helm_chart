@@ -1,3 +1,27 @@
-favorite:
-  drink: coffee
-  food: pizza
+# namespace : 
+namespace: devops-tools
+# deployment attributs : 
+Deployment:
+  name: nexus-server-java
+  replicas: 1
+  labels:
+    name: nexus-server-java
+  volumes: 
+    name: nexus-vol
+    persistentVolumeClaim:
+      claimName: nexus-java-pvc
+    container: 
+      name: nexus-java
+      image: nexus/nexus3:latest
+      resources:
+        limits:
+          memory: "4Gi"
+          cpu: "1000m"
+        requests: 
+          memory: "2Gi"
+          cpu: "500m"
+      volumeMounts: 
+        name: nexus-vol
+# service attributs :
+service: 
+  

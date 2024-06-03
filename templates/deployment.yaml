@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nexus-server-java
+  namespace: devops-tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nexus-server-java
+  template:
+    metadata:
+      labels:
+        app: nexus-server-java
+    spec:
+      volumes:
+        - name: nexus-vol
+          persistentVolumeClaim:
+            claimName: nexus-java-pvc
+      containers:
+        - name: nexus
+          image: sonatype/nexus3:latest
+          resources:
+            limits:
+              memory: "4Gi"
+              cpu: "1000m"
+            requests:
+              memory: "2Gi"
+              cpu: "500m"
+          ports:  
+            - containerPort: 8081
+          volumeMounts:
+            - name: nexus-vol
+              mountPath: /nexus-data
