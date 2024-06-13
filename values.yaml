@@ -7,10 +7,10 @@ nfs-subdir-external-provisioner:
     defaultClass: true
 
   nfs:
-    server: nfs-server-ip
+    server: 192.168.40.4
     path: /data/nfs
 # namespace : 
-namespace: devops-tools
+namespace: nexus
 # deployment attributs : 
 Deployment:
   name: nexus-server-java
@@ -23,7 +23,7 @@ Deployment:
       claimName: nexus-java-pvc
   container: 
     name: nexus-java
-    image: nexus/nexus3:latest
+    image: sonatype/nexus3:3.64.0
     resources:
       limits:
         memory: "4Gi"
